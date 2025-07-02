@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nosso Desafio de Amor 💖</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #ffe6f0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow-x: hidden;
+  }
+  h1 {
+    color: #d6336c;
+    margin-top: 40px;
+    font-size: 2em;
+  }
+  .container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+  }
+  .question, .final, .heart-lock {
+    display: none;
+  }
+  input[type="text"] {
+    padding: 10px;
+    width: 80%;
+    border: 2px solid #d6336c;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  button {
+    background-color: #d6336c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 15px 5px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #b52b5c;
+  }
+  .heart-lock {
+    font-size: 80px;
+    cursor: pointer;
+    margin-top: 50px;
+    color: #d6336c;
+  }
+  .heart {
+    position: fixed;
+    top: -30px;
+    color: #e25578;
+    font-size: 20px;
+    animation: fall 7s linear infinite;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+  }
+  @keyframes fall {
+    0% {transform: translateY(0) rotate(0deg); opacity: 1;}
+    100% {transform: translateY(100vh) rotate(360deg); opacity: 0;}
+  }
+  .photo img {
+    width: 250px;
+    border-radius: 15px;
+    margin: 15px;
+    box-shadow: 0 4px 10px rgba(214,51,108,0.5);
+  }
+  .frase-fixa {
+    font-size: 1.3em;
+    color: #d6336c;
+    margin-top: 15px;
+    font-family: 'Brush Script MT', cursive;
+  }
+  #contador {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #d6336c;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>💖 Nosso Desafio de Amor 💖</h1>
+  
+  <div id="start">
+    <button onclick="startGame()">Começar</button>
+  </div>
+
+  <div id="q1" class="question">
+    <p>1️⃣ Qual a data do nosso namoro?</p>
+    <input type="text" id="a1"/>
+    <button onclick="checkAnswer(1)">Responder</button>
+  </div>
+
+  <div id="q2" class="question">
+    <p>2️⃣ Qual a música da gente?</p>
+    <input type="text" id="a2"/>
+    <button onclick="checkAnswer(2)">Responder</button>
+  </div>
+
+  <div id="q3" class="question">
+    <p>3️⃣ Qual foi a pergunta com duplo sentido?</p>
+    <input type="text" id="a3"/>
+    <button onclick="checkAnswer(3)">Responder</button>
+  </div>
+
+  <div id="q4" class="question">
+    <p>4️⃣ Qual foi o apelido que ti chamei?</p>
+    <input type="text" id="a4"/>
+    <button onclick="checkAnswer(4)">Responder</button>
+  </div>
+
+  <div id="lock" class="heart-lock" onclick="unlockSurprise()">
+    🔒❤️
+  </div>
+
+  <div id="final" class="final">
+    <p id="contador"></p>
+    <div class="photo">
+      <img src="https://i.imgur.com/LMPJ9s6.jpeg" alt="Foto 1">
+      <img src="https://i.imgur.com/MbHnvJ4.png" alt="Foto 2">
+    </div>
+    <p>
+      Dois meses se passaram e cada momento ao seu lado foi incrível! Mesmo à distância, sinto que estamos cada vez mais próximos. Admiro sua inteligência, sua alegria e sua capacidade de me fazer sorrir. Você é a pessoa que eu quero acordar ao lado, mesmo que seja apenas em pensamento.
+      <br><br>
+      Cada conversa é uma aventura, cada risada é contagiante e cada momento de silêncio é uma oportunidade para pensar em você. Você é a minha pessoa favorita para passar o tempo, seja conversando sobre nossos sonhos ou compartilhando nossas experiências.
+      <br><br>
+      Eu amo a forma como você me faz sentir, como você me apoia e me incentiva a ser a melhor versão de mim mesmo. Você é a minha motivação, a minha inspiração e a minha felicidade.
+      <br><br>
+      Estou ansioso para ver o que o futuro reserva para nós. Quero continuar criando memórias com você, quero continuar rindo com você e quero continuar aprendendo com você.
+      <br><br>
+      Obrigado por ser uma pessoa tão especial, obrigado por ser você. Te amo mais do que palavras podem expressar. 💕👫
+    </p>
+    <div class="frase-fixa">Sua melhor escolha foi vim de 4 (vai 24?)</div>
+    <a href="https://youtu.be/2Vv-BfVoq4g?si=N-pv2anBwGRPB2jz" target="_blank">
+      <button>▶️ Ouvir nossa música</button>
+    </a>
+  </div>
+</div>
+
+<script>
+  const respostas = {
+    1: "2 de maio",
+    2: "em teu olha",
+    3: "vai 24",
+    4: "my little princesa"
+  };
+
+  function startGame() {
+    document.getElementById("start").style.display = "none";
+    document.getElementById("q1").style.display = "block";
+  }
+
+  function checkAnswer(n) {
+    const input = document.getElementById("a" + n).value.trim().toLowerCase();
+    if (input === respostas[n].toLowerCase()) {
+      document.getElementById("q" + n).style.display = "none";
+      if (n < 4) {
+        document.getElementById("q" + (n + 1)).style.display = "block";
+      } else {
+        document.getElementById("lock").style.display = "block";
+      }
+    } else {
+      alert("Resposta incorreta. Tente de novo!");
+    }
+  }
+
+  function unlockSurprise() {
+    document.getElementById("lock").style.display = "none";
+    // corações explodindo
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDelay = (Math.random() * 3) + "s";
+      heart.textContent = "💖";
+      document.body.appendChild(heart);
+    }
+    document.getElementById("final").style.display = "block";
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
+  }
+
+  function atualizarContador() {
+    const proximo = new Date();
+    proximo.setMonth(proximo.getMonth() + 1);
+    proximo.setHours(0,0,0,0);
+    const agora = new Date();
+    const diff = proximo - agora;
+    if (diff <=0) {
+      document.getElementById("contador").textContent = "Feliz 3º mês de namoro!";
+      return;
+    }
+    const dias = Math.floor(diff/(1000*60*60*24));
+    const horas = Math.floor((diff/(1000*60*60))%24);
+    const min = Math.floor((diff/(1000*60))%60);
+    const seg = Math.floor((diff/1000)%60);
+    document.getElementById("contador").textContent =
+      `Faltam ${dias} dias, ${horas}h ${min}m ${seg}s para nosso 3º mês!`;
+  }
+</script>
+</body>
+</html>
