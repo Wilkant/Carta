@@ -54,17 +54,14 @@
   }
   .heart {
     position: fixed;
-    top: -30px;
+    top: 50%;
+    left: 50%;
     color: #e25578;
     font-size: 20px;
-    animation: fall 7s linear infinite;
     pointer-events: none;
     user-select: none;
-    z-index: 1;
-  }
-  @keyframes fall {
-    0% {transform: translateY(0) rotate(0deg); opacity: 1;}
-    100% {transform: translateY(100vh) rotate(360deg); opacity: 0;}
+    z-index: 1000;
+    transition: transform 1s ease-out, opacity 1s;
   }
   .photo img {
     width: 250px;
@@ -118,6 +115,12 @@
     <button onclick="checkAnswer(4)">Responder</button>
   </div>
 
+  <div id="q5" class="question">
+    <p>5️⃣ Quantos km estamos de distância?</p>
+    <input type="text" id="a5" placeholder="Apenas números"/>
+    <button onclick="checkAnswer(5)">Responder</button>
+  </div>
+
   <div id="lock" class="heart-lock" onclick="unlockSurprise()">
     🔒❤️
   </div>
@@ -151,7 +154,8 @@
     1: "2 de maio",
     2: "em teu olha",
     3: "vai 24",
-    4: "my little princesa"
+    4: "my little princesa",
+    5: "3300"
   };
 
   function startGame() {
@@ -163,7 +167,7 @@
     const input = document.getElementById("a" + n).value.trim().toLowerCase();
     if (input === respostas[n].toLowerCase()) {
       document.getElementById("q" + n).style.display = "none";
-      if (n < 4) {
+      if (n < 5) {
         document.getElementById("q" + (n + 1)).style.display = "block";
       } else {
         document.getElementById("lock").style.display = "block";
@@ -175,14 +179,26 @@
 
   function unlockSurprise() {
     document.getElementById("lock").style.display = "none";
-    // corações explodindo
+    // Criar explosão de corações
     for (let i = 0; i < 50; i++) {
       const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDelay = (Math.random() * 3) + "s";
       heart.textContent = "💖";
+      heart.style.position = "fixed";
+      heart.style.left = "50%";
+      heart.style.top = "50%";
+      heart.style.fontSize = "20px";
+      heart.style.pointerEvents = "none";
+      heart.style.userSelect = "none";
+      heart.style.zIndex = "1000";
+      heart.style.transition = "transform 1s ease-out, opacity 1s";
       document.body.appendChild(heart);
+      // Forçar layout
+      void heart.offsetWidth;
+      const angle = Math.random() * 2 * Math.PI;
+      const distance = Math.random() * 200 + 50;
+      heart.style.transform = `translate(${Math.cos(angle)*distance}px, ${Math.sin(angle)*distance}px)`;
+      heart.style.opacity = "0";
+      setTimeout(() => heart.remove(), 1000);
     }
     document.getElementById("final").style.display = "block";
     atualizarContador();
