@@ -20,21 +20,25 @@
     font-size: 3em;
     margin-bottom: 10px;
   }
+  #contador {
+    font-size: 1.5em;
+    color: #d6336c;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
   p {
     font-size: 1.2em;
-    margin: 20px auto;
+    margin: 20px auto 10px;
     max-width: 700px;
     line-height: 1.6;
     white-space: pre-line;
     position: relative;
     z-index: 2;
-    cursor: pointer;
   }
-  .mini-frase {
-    display: none;
+  .frase-fixa {
     color: #d6336c;
     font-size: 1.5em;
-    margin-top: 10px;
+    margin-top: 5px;
     font-family: 'Brush Script MT', cursive;
     position: relative;
     z-index: 2;
@@ -93,6 +97,8 @@
 
 <h1>Dois Meses de Amor</h1>
 
+<div id="contador">Carregando contador...</div>
+
 <div class="photo">
   <img src="https://i.imgur.com/LMPJ9s6.jpeg" alt="Foto 1" />
 </div>
@@ -109,7 +115,7 @@ Estou ansioso para ver o que o futuro reserva para nós. Quero continuar criando
 Obrigado por ser uma pessoa tão especial, obrigado por ser você. Te amo mais do que palavras podem expressar. 💕👫
 </p>
 
-<div class="mini-frase" id="miniFrase">eu ti amo</div>
+<div class="frase-fixa">Sua melhor escolha foi vim de 4 (vai 24?)</div>
 
 <a class="button-music" href="https://youtu.be/2Vv-BfVoq4g?si=N-pv2anBwGRPB2jz" target="_blank" rel="noopener noreferrer">
   ▶️ Ouvir nossa música
@@ -120,6 +126,7 @@ Obrigado por ser uma pessoa tão especial, obrigado por ser você. Te amo mais d
 </div>
 
 <script>
+  // Chuva de corações
   const heartCount = 30;
   for (let i = 0; i < heartCount; i++) {
     const heart = document.createElement('div');
@@ -131,15 +138,31 @@ Obrigado por ser uma pessoa tão especial, obrigado por ser você. Te amo mais d
     document.body.appendChild(heart);
   }
 
-  const mensagem = document.getElementById('mensagem');
-  const miniFrase = document.getElementById('miniFrase');
-  mensagem.addEventListener('click', () => {
-    if (miniFrase.style.display === 'none' || miniFrase.style.display === '') {
-      miniFrase.style.display = 'block';
-    } else {
-      miniFrase.style.display = 'none';
+  // Contador regressivo
+  const proximoAniversario = new Date();
+  proximoAniversario.setMonth(proximoAniversario.getMonth() + 1); // daqui 1 mês (3º mês)
+  proximoAniversario.setHours(0,0,0,0); // meia-noite do dia
+
+  function atualizarContador() {
+    const agora = new Date();
+    const diff = proximoAniversario - agora;
+
+    if (diff <= 0) {
+      document.getElementById('contador').textContent = "Feliz 3º mês de namoro! 🎉💕";
+      return;
     }
-  });
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diff / (1000 * 60)) % 60);
+    const segundos = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('contador').textContent = 
+      `Faltam ${dias} dias, ${horas}h ${minutos}m ${segundos}s para nosso 3º mês!`;
+  }
+
+  setInterval(atualizarContador, 1000);
+  atualizarContador();
 </script>
 
 </body>
