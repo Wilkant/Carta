@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Nosso Desafio de Amor 💖</title>
 <style>
   body {
@@ -52,17 +52,6 @@
     margin-top: 50px;
     color: #d6336c;
   }
-  .heart {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    color: #e25578;
-    font-size: 20px;
-    pointer-events: none;
-    user-select: none;
-    z-index: 1000;
-    transition: transform 1s ease-out, opacity 1s;
-  }
   .photo img {
     width: 250px;
     border-radius: 15px;
@@ -93,31 +82,31 @@
 
   <div id="q1" class="question">
     <p>1️⃣ Qual a data do nosso namoro?</p>
-    <input type="text" id="a1"/>
+    <input type="text" id="a1" />
     <button onclick="checkAnswer(1)">Responder</button>
   </div>
 
   <div id="q2" class="question">
     <p>2️⃣ Qual a música da gente?</p>
-    <input type="text" id="a2"/>
+    <input type="text" id="a2" />
     <button onclick="checkAnswer(2)">Responder</button>
   </div>
 
   <div id="q3" class="question">
     <p>3️⃣ Qual foi a pergunta com duplo sentido?</p>
-    <input type="text" id="a3"/>
+    <input type="text" id="a3" />
     <button onclick="checkAnswer(3)">Responder</button>
   </div>
 
   <div id="q4" class="question">
     <p>4️⃣ Qual foi o apelido que ti chamei?</p>
-    <input type="text" id="a4"/>
+    <input type="text" id="a4" />
     <button onclick="checkAnswer(4)">Responder</button>
   </div>
 
   <div id="q5" class="question">
     <p>5️⃣ Quantos km estamos de distância?</p>
-    <input type="text" id="a5" placeholder="Apenas números"/>
+    <input type="text" id="a5" placeholder="Apenas números" />
     <button onclick="checkAnswer(5)">Responder</button>
   </div>
 
@@ -128,18 +117,18 @@
   <div id="final" class="final">
     <p id="contador"></p>
     <div class="photo">
-      <img src="https://i.imgur.com/LMPJ9s6.jpeg" alt="Foto 1">
-      <img src="https://i.imgur.com/MbHnvJ4.png" alt="Foto 2">
+      <img src="https://i.imgur.com/LMPJ9s6.jpeg" alt="Foto 1" />
+      <img src="https://i.imgur.com/MbHnvJ4.png" alt="Foto 2" />
     </div>
     <p>
       Dois meses se passaram e cada momento ao seu lado foi incrível! Mesmo à distância, sinto que estamos cada vez mais próximos. Admiro sua inteligência, sua alegria e sua capacidade de me fazer sorrir. Você é a pessoa que eu quero acordar ao lado, mesmo que seja apenas em pensamento.
-      <br><br>
+      <br /><br />
       Cada conversa é uma aventura, cada risada é contagiante e cada momento de silêncio é uma oportunidade para pensar em você. Você é a minha pessoa favorita para passar o tempo, seja conversando sobre nossos sonhos ou compartilhando nossas experiências.
-      <br><br>
+      <br /><br />
       Eu amo a forma como você me faz sentir, como você me apoia e me incentiva a ser a melhor versão de mim mesmo. Você é a minha motivação, a minha inspiração e a minha felicidade.
-      <br><br>
+      <br /><br />
       Estou ansioso para ver o que o futuro reserva para nós. Quero continuar criando memórias com você, quero continuar rindo com você e quero continuar aprendendo com você.
-      <br><br>
+      <br /><br />
       Obrigado por ser uma pessoa tão especial, obrigado por ser você. Te amo mais do que palavras podem expressar. 💕👫
     </p>
     <div class="frase-fixa">Sua melhor escolha foi vim de 4 (vai 24?)</div>
@@ -179,7 +168,8 @@
 
   function unlockSurprise() {
     document.getElementById("lock").style.display = "none";
-    // Criar explosão de corações
+
+    // Explosão radial de corações
     for (let i = 0; i < 50; i++) {
       const heart = document.createElement("div");
       heart.textContent = "💖";
@@ -192,14 +182,52 @@
       heart.style.zIndex = "1000";
       heart.style.transition = "transform 1s ease-out, opacity 1s";
       document.body.appendChild(heart);
-      // Forçar layout
       void heart.offsetWidth;
       const angle = Math.random() * 2 * Math.PI;
       const distance = Math.random() * 200 + 50;
-      heart.style.transform = `translate(${Math.cos(angle)*distance}px, ${Math.sin(angle)*distance}px)`;
+      heart.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
       heart.style.opacity = "0";
       setTimeout(() => heart.remove(), 1000);
     }
+
+    // Chuva suave de corações depois da explosão
+    setTimeout(() => {
+      const chuvaInterval = setInterval(() => {
+        const c = document.createElement("div");
+        c.textContent = "💖";
+        c.style.position = "fixed";
+        c.style.left = Math.random() * window.innerWidth + "px";
+        c.style.top = "-30px";
+        c.style.fontSize = 10 + Math.random() * 20 + "px";
+        c.style.opacity = "0.8";
+        c.style.pointerEvents = "none";
+        c.style.userSelect = "none";
+        c.style.zIndex = "1000";
+        document.body.appendChild(c);
+
+        let top = -30;
+        const fallSpeed = 2 + Math.random() * 3;
+        const move = () => {
+          top += fallSpeed;
+          c.style.top = top + "px";
+          if (top > window.innerHeight) {
+            c.remove();
+            clearInterval(anim);
+          }
+        };
+        const anim = setInterval(move, 30);
+
+        // Limita a queda do coração a 5 segundos
+        setTimeout(() => {
+          c.remove();
+          clearInterval(anim);
+        }, 5000);
+      }, 200);
+
+      // Para a chuva depois de 5 segundos
+      setTimeout(() => clearInterval(chuvaInterval), 5000);
+    }, 1100);
+
     document.getElementById("final").style.display = "block";
     atualizarContador();
     setInterval(atualizarContador, 1000);
@@ -208,17 +236,17 @@
   function atualizarContador() {
     const proximo = new Date();
     proximo.setMonth(proximo.getMonth() + 1);
-    proximo.setHours(0,0,0,0);
+    proximo.setHours(0, 0, 0, 0);
     const agora = new Date();
     const diff = proximo - agora;
-    if (diff <=0) {
+    if (diff <= 0) {
       document.getElementById("contador").textContent = "Feliz 3º mês de namoro!";
       return;
     }
-    const dias = Math.floor(diff/(1000*60*60*24));
-    const horas = Math.floor((diff/(1000*60*60))%24);
-    const min = Math.floor((diff/(1000*60))%60);
-    const seg = Math.floor((diff/1000)%60);
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const min = Math.floor((diff / (1000 * 60)) % 60);
+    const seg = Math.floor((diff / 1000) % 60);
     document.getElementById("contador").textContent =
       `Faltam ${dias} dias, ${horas}h ${min}m ${seg}s para nosso 3º mês!`;
   }
