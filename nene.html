@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dois Meses de Amor</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffe6f0;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+  }
+  h1 {
+    color: #d6336c;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 1.2em;
+    margin: 20px auto;
+    max-width: 700px;
+    line-height: 1.6;
+    white-space: pre-line;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .mini-frase {
+    display: none;
+    color: #d6336c;
+    font-size: 1.5em;
+    margin-top: 10px;
+    font-family: 'Brush Script MT', cursive;
+    position: relative;
+    z-index: 2;
+  }
+  .photo {
+    margin: 30px 0;
+    position: relative;
+    z-index: 2;
+  }
+  .photo img {
+    width: 300px;
+    max-width: 90vw;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(214,51,108,0.5);
+  }
+  .button-music {
+    background-color: #d6336c;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 1.2em;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 30px auto;
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+    z-index: 2;
+  }
+  .button-music:hover {
+    background-color: #b52b5c;
+  }
+  .heart {
+    position: fixed;
+    top: -30px;
+    color: #e25578;
+    font-size: 24px;
+    animation: fall 7s linear infinite;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+  }
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>Dois Meses de Amor</h1>
+
+<div class="photo">
+  <img src="https://cdn.discordapp.com/attachments/1318798975867949068/1389826502815780995/IMG-20250512-WA0013.jpg" alt="Foto 1" />
+</div>
+
+<p id="mensagem">
+Dois meses se passaram e cada momento ao seu lado foi incrível! Mesmo à distância, sinto que estamos cada vez mais próximos. Admiro sua inteligência, sua alegria e sua capacidade de me fazer sorrir. Você é a pessoa que eu quero acordar ao lado, mesmo que seja apenas em pensamento.
+
+Cada conversa é uma aventura, cada risada é contagiante e cada momento de silêncio é uma oportunidade para pensar em você. Você é a minha pessoa favorita para passar o tempo, seja conversando sobre nossos sonhos ou compartilhando nossas experiências.
+
+Eu amo a forma como você me faz sentir, como você me apoia e me incentiva a ser a melhor versão de mim mesmo. Você é a minha motivação, a minha inspiração e a minha felicidade.
+
+Estou ansioso para ver o que o futuro reserva para nós. Quero continuar criando memórias com você, quero continuar rindo com você e quero continuar aprendendo com você.
+
+Obrigado por ser uma pessoa tão especial, obrigado por ser você. Te amo mais do que palavras podem expressar. 💕👫
+</p>
+
+<div class="mini-frase" id="miniFrase">eu ti amo</div>
+
+<a class="button-music" href="https://youtu.be/2Vv-BfVoq4g?si=N-pv2anBwGRPB2jz" target="_blank" rel="noopener noreferrer">
+  ▶️ Ouvir nossa música
+</a>
+
+<div class="photo">
+  <img src="https://cdn.discordapp.com/attachments/1318798975867949068/1389829739212050522/Screenshot_20250603-021829.png" alt="Foto 2" />
+</div>
+
+<script>
+  const heartCount = 30;
+  for (let i = 0; i < heartCount; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDelay = (Math.random() * 7) + 's';
+    heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+    heart.textContent = '💖';
+    document.body.appendChild(heart);
+  }
+
+  const mensagem = document.getElementById('mensagem');
+  const miniFrase = document.getElementById('miniFrase');
+  mensagem.addEventListener('click', () => {
+    if (miniFrase.style.display === 'none' || miniFrase.style.display === '') {
+      miniFrase.style.display = 'block';
+    } else {
+      miniFrase.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
