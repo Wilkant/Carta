@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Surpresa de Amor</title>
+  <style>
+    body {
+      margin: 0;
+      background: #ffeff0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #a52a2a;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      margin-top: 50px;
+      padding: 0 20px;
+      font-size: 22px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4d6d;
+      font-size: 24px;
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -50px;
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
+    .bear-container {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .bear-container img {
+      width: 150px;
+      animation: kiss 1s infinite alternate;
+    }
+
+    @keyframes kiss {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>
+    Oi vida, passando pra ti lembrar que você é a pessoa mais especial pra me e que eu ti amo hoje, amanhã e sempre.
+    Mesmo com toda suas birra e burrice eu te amo.
+    Às vezes me estressa até demais, mas com tudo isso eu sei que é você a pessoa ideal pra me e que você é a única que me faz sentir o friozinho na barriga.
+    Posso ser complicado às vezes (tá bom vai, sou complicado sempre hihihi), mas saiba que eu tenho bastante medo de perder você, pois foi em você que eu me encontrei.
+    Enfim, essa é uma mini surpresa pro amor da minha vida: VOCÊ!
+  </h1>
+
+  <div class="bear-container">
+    <img src="https://gifman.net/wp-content/uploads/2019/06/ursinho-fofo-apaixonado.gif" alt="Ursinho fofo dando beijo" />
+  </div>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (20 + Math.random() * 20) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+
+    setTimeout(() => {
+      document.querySelector(".bear-container").style.display = "block";
+    }, 10000); // 10 segundos
+  </script>
+</body>
+</html>
